@@ -1,0 +1,71 @@
+<div class="mainHeaderDiv container-fluid">
+    <div class="row">
+        <div class="col-md-4" style="text-align: left">
+            <button type="button" class="contactUs" ng-click="contactUs()">
+                <div class="cUs"></div>
+            </button>
+            <div class="lgInfo" ng-if="!logginUserName">
+                <a href="" class="btnHeader" data-toggle="modal" data-target="#NewUser">مستخدم جديد</a>
+
+                <div class="splitter"></div>
+                <a href="" class="btnHeader" ng-click="openLogin()">تسجيل الدخول</a>
+            </div>
+            <div class="lgInfo" ng-if="logginUserName">
+                <a ng-click="openProfile()" class="btnHeader" data-toggle="modal">{{logginUserName}}</a>
+
+                <div class="splitter"></div>
+                <a href="" class="btnHeader" ng-click="logOut()">تسجيل الخروج</a>
+            </div>
+
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-2">
+            <div class="mainLogoRight">
+                <a class="homeLink" ui-sref="main">
+                    <img src="../assets/images/logos/Ithra_Logo.png" class="logoImageRight">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default" style="direction: rtl">
+                <div class="panel-heading">سجل مشاركاتى السابقه</div>
+                <table class="table table-bordered" >
+                    <thead>
+                    <tr>
+                        <td>المرحلة التعليميه</td>
+                        <td>إسم المدرسة</td>
+                        <td>إسم الجامعة</td>
+                        <td>إسم الكتاب</td>
+                        <td>إسم مؤلف الكتاب</td>
+                        <td>نبذة عن الكتاب</td>
+                        <td>لماذا هذا الكتاب</td>
+                        <td>تغريدة الكتاب</td>
+                        <td>لماذا القراءة</td>
+                        <td>قصة مع القراءة</td>
+                        <td>سنة المشاركة</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="participate in vm.participation">
+                        <td>{{participate.schoolLevel}}</td>
+                        <td>{{participate.schoolName}}</td>
+                        <td>{{participate.UniversityName}}</td>
+                        <td>{{participate.bookName}}</td>
+                        <td>{{participate.bookAuthor}}</td>
+                        <td>{{participate.bookSummary}}</td>
+                        <td>{{participate.whyThisBook}}</td>
+                        <td>{{participate.twitAboutBook}}</td>
+                        <td>{{participate.whyReading}}</td>
+                        <td>{{participate.storyWithReading}}</td>
+                        <td>{{participate.year}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

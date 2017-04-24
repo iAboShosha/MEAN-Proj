@@ -1,0 +1,318 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span
+                aria-hidden="true">×</span></button>
+        <h4 class="modal-title titleProfile">حسابي</h4>
+    </div>
+    <div class="modal-body bodyContentModal">
+
+        <form class="" name="account_form" id="account_form" ng-submit="vm.update()"
+              novalidate="novalidate" style="padding:12px; direction: rtl">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>اسم المستخدم *</label>
+
+                        <div class="clearfix">
+                            <input placeholder="اسم المستخدم" type="text"
+                                   ng-model="vm.user.username"
+                                   class="form-control inputStyleCu"
+                                   id="username" name="username" ng-required="true">
+                        </div>
+
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.username.$dirty  || vm.submitted) && account_form.username.$error.required">
+                        الاسم مطلوب
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>البريد الالكتروني *</label>
+
+                        <div class="clearfix">
+                            <input placeholder="البريد الالكتروني" type="email"
+                                   ng-model="vm.user.email"
+                                   class="form-control inputStyleCu"
+                                   id="email" name="email" ng-required="true">
+                        </div>
+
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.email.$dirty  || vm.submitted) && account_form.email.$error.required">
+                        البريد الالكتروني مطلوب
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>اسم *</label>
+
+                        <div class="clearfix">
+                            <input placeholder="اسم" type="text"
+                                   ng-model="vm.user.firstName"
+                                   class="form-control inputStyleCu"
+                                   id="firstName" name="firstName" ng-required="true">
+                        </div>
+
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.firstName.$dirty  || vm.submitted) && account_form.firstName.$error.required">
+                        الاسم مطلوب
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>اسم الاب *</label>
+
+                        <div class="clearfix">
+                            <input placeholder="اسم الاب" type="text"
+                                   ng-model="vm.user.middleName"
+                                   class="form-control inputStyleCu"
+                                   id="middleName" name="middleName" ng-required="true">
+                        </div>
+
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.middleName.$dirty  || vm.submitted) && account_form.middleName.$error.required">
+                        الاسم الاب مطلوب
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>اسم العائله *</label>
+
+                        <div class="clearfix">
+                            <input placeholder="اسم العائله" type="text"
+                                   ng-model="vm.user.lastName"
+                                   class="form-control inputStyleCu"
+                                   id="lastName" name="lastName" ng-required="true">
+                        </div>
+
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.lastName.$dirty  || vm.submitted) && account_form.lastName.$error.required">
+                        الاسم العائله مطلوب
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>رقم الهوية الوطنية او رقم الاقامه *</label>
+
+                        <div class="clearfix">
+                            <input placeholder="رقم الهوية الوطنية او رقم الاقامه" type="text"
+                                   ng-model="vm.user.nNum"
+                                   class="form-control inputStyleCu"
+                                   id="nNum" name="nNum" ng-required="true">
+                        </div>
+
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.nNum.$dirty  || vm.submitted) && account_form.nNum.$error.required">
+                        رقم الهوية الوطنية او رقم الاقامه مطلوب
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>الجنس *</label>
+                        <select ng-model="vm.user.gender" class="form-control selectStyle" id="gender"
+                                name="gender"
+                                ng-options="r.value as r.Name for r in vm.genders" ng-required="true">
+                        </select>
+
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.gender.$dirty  || vm.submitted) && account_form.gender.$error.required">
+                        مطلوب
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>تاريخ الميلاد *</label>
+
+                        <div class="clearfix">
+                            <input placeholder="اسم المستخدم" type="date"
+                                   ng-model="vm.user.dob"
+                                   class="form-control inputStyleCu"
+                                   id="dob" name="dob" ng-required="true">
+                        </div>
+
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.dob.$dirty  || vm.submitted) && account_form.dob.$error.required">
+                        تاريخ الميلاد مطلوب
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>المنطقه *</label>
+                        <select id="region" ng-model="vm.user.region"
+                                ng-change="vm.filterCities(vm.user.region)" name="region"
+                                class="form-control inputStyleCu pull-right" ng-required="true">
+                            <option ng-repeat="region in vm.regions" value="{{region.region_id}}">
+                                {{region.name.ar}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.region.$dirty  || vm.submitted) && account_form.region.$error.required">
+                        المدينة مطلوبة
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>المدينه *</label>
+                        <select ng-required="true" ng-model="vm.user.city" name="city"
+                                class="form-control inputStyleCu pull-right">
+                            <option ng-repeat="city in vm.filteredCities" value="{{city.city_id}}">
+                                {{city.name.ar}}
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.city.$dirty  || vm.submitted) && account_form.city.$error.required">
+                        المنطقه مطلوبه
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <div class="form-group inputCust" style="direction: ltr">
+                        <label style="direction: rtl;display: block">رقم الجوال *</label>
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                               ng-model="vm.user.mobile" ng-intl-tel-input
+                               class="form-control inputStyleCu  pull-right" id="mobile" name="mobile"
+                               ng-required="true">
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.mobile.$dirty  || vm.submitted) && account_form.mobile.$error.required">
+                        رقم الجوال مطلوب
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <div class="form-group inputCust" style="direction: ltr">
+                        <label style="direction: rtl;display: block">رقم الجوال اخر*</label>
+
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                               ng-model="vm.user.mobile2" ng-intl-tel-input
+                               class="form-control inputStyleCu  pull-right" id="mobile2" name="mobile2">
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>كلمة المرور *</label>
+                        <input type="password" id="password1" name="password1"
+                               placeholder="6 خانات على الاقل"
+                               class="form-control inputStyleCu" ng-model="vm.password"
+                                >
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.password1.$dirty  || account_form.submitted)">
+                        يجب ادخال كلمه المرور
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <div class="form-group inputCust">
+                        <label>اعادة كلمة السر *</label>
+                        <input type="password" id="cpassword" name="cpassword"
+                               placeholder="6 خانات على الاقل"
+                               class="form-control inputStyleCu" ng-model="vm.user.repassword"
+                                >
+                    </div>
+                    <div class="alert alert-danger"
+                         ng-show="(account_form.cpassword.$dirty  || account_form.submitted)&& account_form.cpassword.$error.required">
+                        يجب ادخال كلمه المرور
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="titleForms"> بيانات التواصل الاجتماعي </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <label class="connected" ng-if="vm.user.isFacebook"> فيس بوك متصل</label>
+
+                    <div class="social-box col-md-12" ng-if="!vm.user.isFacebook">
+                        <a href="" ng-click="vm.fbLogin()">
+                            <div class="facebook-bar"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <label class="connected" ng-if="vm.user.isTwitter">تويتر متصل</label>
+
+                    <div class="social-box col-md-12" ng-if="!vm.user.isTwitter">
+                        <a href="" ng-click="vm.authenticate('twitter')">
+                            <div class="twitter-bar"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <label class="connected" ng-if="vm.user.isGoogle">جوجل بلس متصل</label>
+
+                    <div class="social-box col-md-12" ng-if="!vm.user.isGoogle">
+                        <a href="" ng-click="vm.gLogin()">
+                            <div class="google-bar"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <label class="connected" ng-if="vm.user.isLive">ميكروسوفت لايف متصل</label>
+
+                    <div class="social-box col-md-12" ng-if="!vm.user.isLive">
+                        <a href="" ng-click="vm.liveLogin()">
+                            <div class="window-bar"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                    <div class="alert alert-danger" id="signup-error" ng-if="vm.error">
+                        <strong>{{vm.error}}</strong>
+                    </div>
+                    <div class="alert alert-success" id="signup-success" style="display:none;">
+                        <strong></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="ButtonStyleSectionOne buttonFormSend" type="submit"> تعديل</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="ButtonStyleSectionOne pull-left" ng-click="$dismiss()">الغاء</button>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="modal-content" style="border: 0px">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span
+                aria-hidden="true">×</span></button>
+        <h4 class="modal-title titleLogin">تسجيل الدخول</h4>
+    </div>
+    <div class="modal-body bodyContentModal">
+
+        <!--<div class="col-md-12 navTapModal">
+            <a class="itemTapModal loginFormButton" ng-click="login.loginForm()"><span
+                    class="glyphicon glyphicon-log-in"></span></a>
+
+            <a class="itemTapModal resetFormButton" ng-click="login.resetForm()"><span
+                    class="glyphicon glyphicon-send"></span></a>
+        </div>-->
+
+        <form class="loginForm formNoe viewBlock" name="signin-form" id="signin-form">
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label>البريد الالكتروني *</label>
+                    <input type="text" class="form-control inputStyleCu" id="emaillogin" name="emaillogin"
+                           ng-model="login.loginemail">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label> كلمة المرور *</label>
+                    <input type="password" id="password" name="password" class="form-control inputStyleCu"
+                           ng-model="login.loginpassword">
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                <div class="alert alert-danger" id="signin-error" ng-style="{display:login.loginError?'block':'none'}">
+                    <strong>
+                        {{login.loginError}}
+                    </strong>
+                </div>
+                <div class="alert alert-success" id="signin-success" style="display:none;"><strong></strong>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button class="ButtonStyleSectionOne buttonFormSend" ng-click="login.login()"> تسجيل</button>
+            </div>
+            <div class="social-box col-md-12">
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <a href="" ng-click="login.fbLogin()">
+                        <div class="facebook-bar"></div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <a href="" ng-click="login.authenticate('twitter')">
+                        <div class="twitter-bar"></div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <a href="" ng-click="login.gLogin()">
+                        <div class="google-bar"></div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                    <a href="" ng-click="login.liveLogin()">
+                        <div class="window-bar"></div>
+                    </a>
+                </div>
+            </div>
+            <a href="" class="hoverA pull-left" style="margin-top: 20px" ng-click="login.resetForm()">نسيت كلمه المرور
+            </a>
+        </form>
+
+
+        <form class="resetForm formNoe viewNone" id="reset-password-form" method="post"
+              style="display: none;">
+            <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label>ادخل الايميل *</label>
+                    <input name="reset-email" type="email" id="reset-email"
+                           class="form-control inputStyleCu" ng-model="login.resetMail">
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button class="ButtonStyleSectionOne buttonFormSend" ng-click="login.resetPassword()"> ارسال
+                </button>
+            </div>
+        </form>
+        <div class="clearfix"></div>
+    </div>
+</div>
+

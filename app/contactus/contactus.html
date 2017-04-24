@@ -1,0 +1,66 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span
+                aria-hidden="true">×</span></button>
+        <h4 class="modal-title">تواصل معنا</h4>
+    </div>
+    <div class="modal-body bodyContentModal">
+        <form name="formContactUs" class="" ng-submit="vm.submit(formContactUs)">
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label>الأسم *</label>
+                    <input ng-required="true" type="text" class="form-control inputStyleCu" ng-model="vm.model.name">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label>البريد الالكتروني *</label>
+                    <input ng-required="true" type="email" class="form-control inputStyleCu" ng-model="vm.model.email">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label> الموضوع * </label>
+                    <input ng-required="true" type="text" class="form-control inputStyleCu" ng-model="vm.model.subject">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label>رقم الجوال *</label>
+                    <input type="text" ng-required="true" class="form-control inputStyleCu" ng-model="vm.model.mobile">
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label>الرسالة *</label>
+                    <textarea ng-required="true" class="form-control inutStyleCu areaInout"
+                              ng-model="vm.model.message"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group inputCust">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-value="true" ng-model="vm.model.sendMeCopy" type="checkbox"> ارسال نسخه لي علي
+                            البريد الالكتروني
+                        </label>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button type="submit" class="ButtonStyleSectionOne buttonFormSend"> ارسال</button>
+            </div>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="ButtonStyleSectionOne pull-left" ng-click="$dismiss()">الغاء</button>
+    </div>
+</div>

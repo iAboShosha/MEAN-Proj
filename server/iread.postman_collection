@@ -1,0 +1,68 @@
+{
+	"variables": [],
+	"info": {
+		"name": "",
+		"_postman_id": "",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/auth",
+			"request": {
+				"url": "http://0.0.0.0:9001/auth",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic aWFib3Nob3NoYTVAZ21haWwuY29tOjEyMzQ1Ng==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "email + password should be sent as basic auth\nuse js \n\n headers: {\n    \"Authorization\", btoa(username + \":\" + password)\n  },"
+			},
+			"response": []
+		},
+		{
+			"name": "/users",
+			"request": {
+				"url": "http://0.0.0.0:9001/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\":\"123456\",\n\t\"username\":\"ibrahim\",\n\t\"middleName\":\"younis\",\n\t\"lastName\":\"AboShosha\",\n\t\"email\":\"iaboshosha6@gmail.com\",\n\t\"mobile\":\"0000002232\",\n\t\"gender\":0,\n\t\"state\":1,\n\t\"city\":2,\n\t\"school\":5,\n\t\"study_state\":2,\n\t\"dob\":\"2012-04-23T18:25:43.511Z\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "users/me",
+			"request": {
+				"url": "http://0.0.0.0:9001/users/me",
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4ZWU3ZTJiZjhhOWY2YTU2YmFhYjI1OCIsImlhdCI6MTQ5MjAyNjg1OX0.nU0RaGzqm2zNV8KLNX9I4oQENzrcF4bQ7ZLVQERar00",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

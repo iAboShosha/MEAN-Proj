@@ -1,0 +1,11 @@
+{
+  "generator-rest": {
+    "srcDir": ".",
+    "apiDir": "api",
+    "authMethods": [
+      "password",
+      "facebook",
+      "google"
+    ]
+  }
+}

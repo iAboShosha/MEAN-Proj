@@ -1,0 +1,570 @@
+<div>
+    <div class="container counterContainer">
+        <div class="row">
+            <div class="col-md-1 col-sm-1 col-xs-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-4 countDown">
+                <timer end-time="vmAuth.endTime" class="counterStyle">
+                    {{days}}<br>يوم
+                </timer>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-4 col-md-offset-0 col-xs-offset-2 countDown">
+                <timer end-time="vmAuth.endTime" class="counterStyle">
+                    {{hours}}<br>ساعه
+                </timer>
+            </div>
+            <div class="col-md-1 col-sm-1 countDown minuteCounter">
+                <timer end-time="vmAuth.endTime" class="counterStyle">
+                    {{minutes}}<br>دقيقه
+                </timer>
+            </div>
+            <div class="col-md-1 col-sm-1 countDown secCounter">
+                <timer end-time="vmAuth.endTime" class="counterStyle">
+                    {{seconds}}<br>ثانيه
+                </timer>
+            </div>
+        </div>
+    </div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="mainLogoLeftFloat">
+            <a class="homeLink" ui-sref="main">
+                <img src="../assets/images/logos/iRead_Logo.png" class="logoImageRight">
+            </a>
+        </div>
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <!--<li data-target="#myCarousel" data-slide-to="3"></li>-->
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="../assets/images/sliders/image1.png" style="width: 100%" alt="iRead">
+            </div>
+
+            <div class="item">
+                <img src="../assets/images/sliders/image2.png" style="width: 100%" alt="iRead">
+            </div>
+
+            <div class="item">
+                <img src="../assets/images/sliders/image3.png" style="width: 100%" alt="iRead">
+            </div>
+            <!--<div class="item">-->
+                <!--<img src="../assets/images/sliders/image4.png" style="width: 100%" alt="iRead">-->
+            <!--</div>-->
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+    <nav class="navbar navbar-default affix-top" data-spy="affix" bs-affix data-offset-top="870">
+        <div class="mainHeaderDiv container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-xs-12 fixed-actions" style="text-align: left;z-index: 999999 !important;">
+                    <button type="button" class="contactUs" ng-click="contactUs()">
+                        <div class="cUs"></div>
+                    </button>
+                    <div class="lgInfo" ng-if="!logginUserName">
+                        <a href="" class="btnHeader" data-toggle="modal" data-target="#NewUser">مستخدم جديد</a>
+
+                        <div class="splitter"></div>
+                        <a href="" class="btnHeader" ng-click="openLogin()">تسجيل الدخول</a>
+                    </div>
+                    <div class="lgInfo" ng-if="logginUserName">
+                        <a ng-click="openProfile()" class="btnHeader" data-toggle="modal">{{logginUserName}}</a>
+
+                        <div class="splitter"></div>
+                        <a href="" class="btnHeader" ng-click="logOut()">تسجيل الخروج</a>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-12">
+                    <div class="mainLogoRight homelogo" ui-sref="main">
+                        <a class="homeLink" href="">
+                            <img src="../assets/images/logos/Ithra_Logo.png" class="logoImageRight">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse mynavbar" id="bs-example-navbar-collapse-1">
+                <ul class="nav nav-pills nav-justified">
+                    <li class=""><a href="#join">اشترك الآن</a></li>
+                    <li class=""><a href="#levels"> مراحل المسابقة</a></li>
+                    <li class=""><a href="#read">حكايه أقرأ</a></li>
+                    <li class=""><a href="#comp"># مسابقة_أقرأ</a></li>
+                    <li class=""><a href="#rules">القوانين والاحكام</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid sectionOne mainBg" id="join">
+        <div class="sectionShartaBg">
+            <div class="sectionShadaBg">
+                <div class="sectionDotRightBg">
+                    <div class="sectionDotBg">
+                        <div class="sectionOneInnerBg">
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-md-2 col-sm-3 col-xs-12 col-md-offset-5 col-sm-offset-2 moreInfo">
+                                    <h1 class="titleSectionOne">
+                                        <span>مسابقة</span>
+                                        <br> قارئ العام
+                                        <div class="bookRead"></div>
+                                    </h1>
+                                </div>
+
+                                <div class="col-md-5 col-sm-7 col-xs-12 testSectionOne para1">
+                                    <p class="textDescription">
+                                        تستهدف طلاب وطالبات المرحلة المتوسطة -الثانوية- الجامعية.
+                                        يقدم المشارك فيها مراجعة لكتاب من اختياره.
+                                        يحكى تجربته الملهمة معه.
+                                        من يتأهل فى التحقيقات الاولية سيكون له فرصة المشاركة فى ملتقى"اقرأ"
+                                        الاثرائى.والذى
+                                        يتكون من
+                                        محاضرات
+                                        ثقافية وورش عمل ابداعية ودورات تدريبية.يعد فيها المشارك محتوى العرض الختامى عن
+                                        فكره
+                                        معينه
+                                        يختارها
+                                        ويقوم
+                                        بالبحث فيها من خلال عده مصادر لعرضها فى الحفل الختامى بشكل ابداعى.والذى سيقام فى
+                                        شهر
+                                        ديسمبر
+                                    </p>
+
+                                    <div class="col-md-12 buttonSectionOne">
+                                        <button type="button" class="ButtonStyleSectionOne" ui-sref="participation"
+                                                ng-if="logginUserName">
+                                            أشترك الآن
+                                        </button>
+                                        <button type="button" class="ButtonStyleSectionOne"
+                                                ui-sref="user-participation" ng-if="logginUserName"
+                                                style="width: 200px">سجل مشاركاتي السابقة
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-sm-3 col-xs-12 pull-right col-md-offset-right-5 moreInfo">
+                                    <h1 class="titleSectionOne">
+                                        <span>مسابقة</span>
+                                        <br> المدرسة القارئة
+                                        <div class="bookRead"></div>
+                                    </h1>
+                                </div>
+
+                                <div class="col-md-5 col-sm-7 col-xs-12 pull-right testSectionOne para2">
+                                    <p class="textDescription">تستهدف هذه المسابقة المدارس بشكل خاص، حيث تحصل المدرسة
+                                        على رقم موحد يُمكن طلابها من التسجيل في المسابقة كمنسوبي مدرسة واحدة. سيقوم
+                                        الموقع على أثر ذلك بعرض عدد القُراء في كل مدرسة على حدة طِبقاً للطلاب المسجلين
+                                        بالرقم الموحد. سيتم ترشيح عشرة مدارس (بنين وبنات) للفوز في هذه المسابقة وذلك
+                                        للمدرسة التي تحفز طلابها للقراءة والمشاركة ، وتحقق أكبر عدد من مشاركات الطلاب .
+                                    </p>
+
+                                    <div class="col-md-12 buttonSectionOne">
+
+                                        <button type="button" class="ButtonStyleSectionOne" ui-sref="school"
+                                                ng-if="logginUserName">سجل
+                                            مدرستك
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-2 col-sm-3 col-xs-12 col-md-offset-5 col-sm-offset-2 moreInfo">
+                                    <h1 class="titleSectionOne">
+                                        <span>مسابقة</span>
+                                        <br> دقيقة قراءة
+                                        <div class="micRead"></div>
+                                    </h1>
+                                </div>
+                                <div class="col-md-5 col-sm-7 col-xs-12 testSectionOne para3">
+                                    <p class="textDescription">تستهدف لمحبي القراءة في شبكات التواصل الاجتماعي في
+                                        المملكة
+                                        العربية السعودية لنشر
+                                        ثقافة القراءة عبر وسائل التواصل الإجتماعي وجمال القراءة من خلال التصوير والتوثيق
+                                        عبر
+                                        شبكات
+                                        التواصل
+                                        الاجتماعي. مسابقة دقيقة قراءة هي مسابقة متاحة لجميع المواطنين والمقيمين في
+                                        المملكة
+                                        العربية
+                                        السعودية
+                                    </p>
+
+                                    <div class="col-md-12 buttonSectionTwo">
+                                        <button type="button" class="ButtonStyleSectionOne" data-toggle="modal"
+                                                data-target="#Login">قريبا
+                                        </button>
+                                        <!--<button type="button" class="ButtonStyleSectionOne" data-toggle="modal"
+                                                data-target="#joinTwo">
+                                            عرض المشاركات
+                                        </button>
+-->
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--end section one-->
+
+    <div id="levels" class="container-fluid sliderSection">
+        <div class="col-md-12 textTitleSlider">
+
+        </div>
+        <div class="row parMargin">
+            <img src="/assets/images/stages.png" alt="stages"
+                 style="width: 100%; padding-left: 15%; padding-right: 15%">
+            <!--<div class="col-md-2 col-sm-2 col-xs-12 pull-right stepsLine">-->
+
+            <!--</div>-->
+            <!--<div class="col-md-2 col-sm-2 col-xs-12 pull-right stepsLine">-->
+            <!--<div class="row">-->
+            <!--<p class="titleLevel"> المرحلة الاولى</p>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div class="stagePos stage1">-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<p class="greenColor">الانطلاق والتسجيل</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-2 col-sm-2 col-xs-12 pull-right stepsLine">-->
+            <!--<div class="row">-->
+            <!--<p class="titleLevel"> المرحلة الثانية-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div class="stagePos stage2">-->
+            <!--<div class="lineDots"></div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<p class="greenColor">المقابلات الشخصية</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-2 col-sm-2 col-xs-12 pull-right stepsLine">-->
+            <!--<div class="row">-->
+            <!--<p class="titleLevel"> المرحلة الثالثة-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div class="stagePos stage3">-->
+
+            <!--<div class="lineDots"></div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<p class="greenColor">ملتقى اقرا الاثرائي</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-2 col-sm-2 col-xs-12 pull-right stepsLine">-->
+            <!--<div class="row">-->
+            <!--<p class="titleLevel"> الحفل الختامي-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<div class="stagePos stage4">-->
+
+            <!--<div class="lineDots"></div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+            <!--<p class="greenColor">اعلان الفائزين بمسابقتي-->
+            <!--اقرا العام ودقيقة قرائة</p>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <div class="clearfix"></div>
+            <!--<div class="clearfix lineDots"></div>-->
+        </div>
+    </div>
+
+
+    <!--start slider-->
+    <div id="read" class="container-fluid sliderSection">
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1 col-xs-12 winner winner1">
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-12 winner winner2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-md-offset-1 col-sm-offset-1  col-xs-12 winner winner3">
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-12 winner winner4">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid sectionOne mainBg" id="comp" style="padding-top: 100px;padding-bottom: 100px">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="direction: rtl">
+                    #مسابقة_أقرا
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 twitter-posts">
+                <a class="twitter-timeline" href="https://twitter.com/iReadAward">Tweets by iReadAward</a>
+                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="rules" class="container-fluid sectionOne mainBg">
+        <div class="sectionFrInnerBg wow slideInUp">
+            <h2 class="fontTitleSectionThree">القوانين و الأحكام</h2>
+
+            <div class="clearfix"></div>
+            <div class="col-md-12">
+                <div class="scrolltext">
+                    <div class="col-md-12">
+                        <h6 class="titleRow">معايير الترشيح :</h6>
+
+                        <div class="contentText">
+                            <p>ستكون مرحلة الترشيح النهائية في مبادرة صنّاع الأمل على شكل مقابلة شخصية مع أفضل 12
+                                صانع
+                                أمل
+                                بلغوا هذه المرحلة المتقدمة. بحيث يتم اختيار أفضل 5 مشاركات من هذه المجموعة بناء على
+                                المعايير
+                                التالية:
+                            </p>
+
+                            <p>
+                                أن تكون قصة صانع الأمل ملهمة وصادقة ومؤثرة في المجتمع المحيط.<br>
+                                إرفاق الوثائق المساندة (صور ومقاطع فيديو) لدعم مشاركتك.<br>
+                                أن يكون أثر مبادرة صانع الأمل محسوسا، حتى لو كان صغيرا.<br>
+                                يجب أن تتوافق جهود صانع الأمل مع القوانين في بلد إقامته.<br>
+                                يجب أن تكون مشاركة صانع الأمل متوافقة مع الشروط والأحكام.<br>
+                                أن يكون صانع الأمل عربيا ينشر الأمل في العالم.<br>
+                                أن يتقن مهارات البذل والعطاء وخدمة الناس دون مقابل.
+                                أن يتمتع بخبرة لا تقل عن مبادرة مجتمعية واحدة في العمل والعطاء التطوعي أو أي من
+                                الأعمال
+                                الإنسانية أو الخيرية أو التخصصية التي تسهم في إسعاد الناس.<br>
+                                أن يكون مشهودا له في مجتمعه بحسن السيرة وجمال السلوك الإنساني.<br>
+                                أن يكون إيجابيا ومؤمنا بطاقات من حوله من أبناء الوطن العربي.<br>
+                                أن يكون عمر المتقدم\المتقدمة بين 5 إلى 95 سنة.<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <!--modal-->
+
+    <!-- Modal -->
+
+
+    <div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">مستخدم جديد </h4>
+                </div>
+                <div class="modal-body bodyContentModal">
+                    <form class="" name="account_form" id="account_form" ng-submit="vmAuth.createUser()"
+                          novalidate="novalidate">
+                        <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                            <div class="form-group inputCust">
+                                <label>اسم المستخدم *</label>
+
+                                <div class="clearfix">
+                                    <input placeholder="اسم المستخدم" type="text"
+                                           ng-model="vmAuth.userInfo.username"
+                                           class="form-control inputStyleCu"
+                                           id="username" name="username" ng-required="true">
+                                </div>
+
+                            </div>
+                            <div class="alert alert-danger"
+                                 ng-show="(account_form.username.$dirty  || vmAuth.submitted) && account_form.username.$error.required">
+                                الاسم مطلوب
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                            <div class="form-group inputCust" style="direction: ltr">
+                                <label style="direction: rtl" class="pull-right">رقم الجوال *</label>
+                                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                       ng-model="vmAuth.userInfo.mobile" ng-intl-tel-input
+                                       class="form-control inputStyleCu  pull-right" id="mobileno" name="mobileno"
+                                       ng-required="true">
+
+                            </div>
+                            <div class="alert alert-danger"
+                                 ng-show="(account_form.mobileno.$dirty  || vmAuth.submitted) && account_form.mobileno.$invalid">
+                                يجب ادخال رقم جوال صحيح
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                            <div class="form-group inputCust">
+                                <label>البريد الالكتروني *</label>
+                                <input type="email" placeholder="مثال : example@domain.com"
+                                       ng-model="vmAuth.userInfo.email"
+                                       class="form-control inputStyleCu" id="email_create" name="email_create"
+                                       ng-required="true">
+                            </div>
+                            <div class="alert alert-danger"
+                                 ng-show="(account_form.email_create.$dirty  || vmAuth.submitted)&& account_form.email_create.$error.required">
+                                يجب ادخال البريد الالكترونى
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                            <div class="form-group inputCust">
+                                <label>اعادة البريد الالكتروني *</label>
+                                <input type="email" placeholder="مثال : example@domain.com"
+                                       ng-model="vmAuth.userInfo.reemail"
+                                       class="form-control inputStyleCu" id="re_email_create" name="re_email_create"
+                                       ng-required="true">
+                            </div>
+                            <div class="alert alert-danger"
+                                 ng-show="(account_form.re_email_create.$dirty  || vmAuth.submitted)&& account_form.re_email_create.$error.required">
+                                يجب ادخال البريد الالكترونى
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                            <div class="form-group inputCust">
+                                <label>كلمة المرور *</label>
+                                <input type="password" id="password1" name="password1"
+                                       placeholder="6 خانات على الاقل"
+                                       class="form-control inputStyleCu" ng-model="vmAuth.userInfo.password"
+                                       ng-required="true">
+                            </div>
+                            <div class="alert alert-danger"
+                                 ng-show="(account_form.password1.$dirty  || vmAuth.submitted)&& account_form.password1.$error.required">
+                                يجب ادخال كلمه المرور
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                            <div class="form-group inputCust">
+                                <label>اعادة كلمة السر *</label>
+                                <input type="password" id="cpassword" name="cpassword"
+                                       placeholder="6 خانات على الاقل"
+                                       class="form-control inputStyleCu" ng-model="vmAuth.userInfo.repassword"
+                                       ng-required="true">
+                            </div>
+                            <div class="alert alert-danger"
+                                 ng-show="(account_form.cpassword.$dirty  || vmAuth.submitted)&& account_form.cpassword.$error.required">
+                                يجب ادخال كلمه المرور
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="col-md-12 checkboxDiv">
+                            <input type="checkbox" class="checkbox checkboxForm" id="form_checkbox"
+                                   ng-model="vmAuth.userInfo.checkedInfo" name="form_checkbox" ng-required="true">
+
+                            <p class="checkboxText">أقر بأن جميع المعلومات المذكوره أعلاه صحيحة وفي حال وجود أي خطأ
+                                في
+                                المعلومات
+                                فإنني أتحمل كامل المسؤولية وأنني اطلعت على جميع القوانين والأحكام الخاصة
+                                .بالمسابقة والموافقة عليها</p>
+                        </div>
+                        <div class="alert alert-danger"
+                             ng-show="(account_form.form_checkbox.$dirty  || vmAuth.submitted)&& account_form.form_checkbox.$error.required">
+                            يجب الموافقه على ان جميع البيانات صحيحه
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                            <div vc-recaptcha key="vmAuth.publicKey" on-create="vmAuth.setWidgetId(widgetId)"
+                                 ng-model="vmAuth.userInfo['g-recaptcha-response']"></div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                            <div class="alert alert-danger" id="signup-error" style="display:none;">
+                                <strong></strong>
+                            </div>
+                            <div class="alert alert-success" id="signup-success" style="display:none;">
+                                <strong></strong>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-12 submitbottReg">
+                            <button class="ButtonStyleSectionOne buttonFormSend" type="submit"> تسجيل</button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="social-box col-md-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                                <a href="" ng-click="vmAuth.fbLogin()">
+                                    <div class="facebook-bar"></div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                                <a href="" ng-click="vmAuth.authenticate('twitter')">
+                                    <div class="twitter-bar"></div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                                <a href="" ng-click="vmAuth.gLogin()">
+                                    <div class="google-bar"></div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                                <a href="" ng-click="vmAuth.liveLogin()">
+                                    <div class="window-bar"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="ButtonStyleSectionOne pull-left" data-dismiss="modal">الغاء
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

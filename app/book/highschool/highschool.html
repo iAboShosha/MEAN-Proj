@@ -1,0 +1,519 @@
+<div class="mainHeaderDiv container-fluid">
+    <div class="row">
+        <div class="col-md-4" style="text-align: left">
+            <button type="button" class="contactUs" ng-click="contactUs()">
+                <div class="cUs"></div>
+            </button>
+            <div class="lgInfo" ng-if="!logginUserName">
+                <a href="" class="btnHeader" data-toggle="modal" data-target="#NewUser">مستخدم جديد</a>
+
+                <div class="splitter"></div>
+                <a href="" class="btnHeader" ng-click="openLogin()">تسجيل الدخول</a>
+            </div>
+            <div class="lgInfo" ng-if="logginUserName">
+                <a ng-click="openProfile()" class="btnHeader" data-toggle="modal">{{logginUserName}}</a>
+
+                <div class="splitter"></div>
+                <a href="" class="btnHeader" ng-click="logOut()">تسجيل الخروج</a>
+            </div>
+
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-2">
+            <div class="mainLogoRight">
+                <img src="../assets/images/logos/Ithra_Logo.png" class="logoImageRight">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-body bodyContentModal" style="margin-bottom: -50px">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>شاركنا كتابك</h1>
+            <h5>تستطيع المشاركة باللغتين العربية والانجليزيةوسيكون العرض النهائي حال ترشحكم بالعربية فقط</h5>
+        </div>
+    </div>
+    <form novalidate name="book" class="form-horizontal" style="direction: rtl" ng-submit="vm.submitBookForm()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 pull-right">
+                                <h5>1 القسم الاول: المعلومات الشخصيه</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.firstName.$error.required && (book.$submitted || book.firstName.$touched)}">
+                                    <label for="firstName" class="col-sm-2 control-label pull-right">الإسم
+                                        الأول*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="firstName" type="text" ng-required="true"
+                                               class="form-control pull-right"
+                                               ng-model="vm.book.personalInfo.firstName" name="firstName"
+                                               placeholder="الاسم الاول">
+                                    </div>
+                                    <div ng-show="book.$submitted || book.firstName.$touched">
+                                        <span ng-show="book.firstName.$error.required" class="alert alert-danger">الأسم الأول مطلوب</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.lastName.$error.required && (book.$submitted || book.lastName.$touched)}">
+                                    <label for="lastName" class="col-sm-2 control-label pull-right">الإسم
+                                        الثاني*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="lastName" type="text" ng-required="true"
+                                               class="form-control pull-right"
+                                               ng-model="vm.book.personalInfo.lastName" name="lastName"
+                                               placeholder="الإسم الثاني">
+                                    </div>
+                                    <div ng-show="book.$submitted || book.lastName.$touched">
+                                        <span ng-show="book.lastName.$error.required" class="alert alert-danger">الإسم الثاني مطلوب</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.nationalId.$error.required && (book.$submitted || book.nationalId.$touched)}">
+                                    <label for="nationalId" class="col-sm-2 control-label pull-right">أدخل رقم الهوية
+                                        الوطنية أو
+                                        رقم الإقامة*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="nationalId" type="text" ng-required="true"
+                                               class="form-control pull-right"
+                                               ng-model="vm.book.personalInfo.nationalId" name="nationalId"
+                                               placeholder="رقم الهوية الوطنية السعودية">
+                                    </div>
+                                    <div ng-show="book.$submitted || book.nationalId.$touched">
+                                        <span ng-show="book.nationalId.$error.required" class="alert alert-danger">رقم الهوية مطلوب</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label pull-right">*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <label class="radio-inline">
+                                            <input type="radio" ng-model="vm.book.personalInfo.gender" value="0"
+                                                   name="gender">ذكر
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" ng-model="vm.book.personalInfo.gender" value="1"
+                                                   name="gender">أنثى
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label pull-right">تاريخ الميلاد*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <div class="row pull-right">
+                                            <div class="col-sm-4 pull-right">
+                                                <select ng-required="true" ng-model="vm.book.personalInfo.dob.day"
+                                                        name="dob.name" class="form-control">
+                                                    <option ng-repeat="day in vm.dob.days" value="{{day}}">{{day}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4 pull-right">
+                                                <select ng-required="true" ng-model="vm.book.personalInfo.dob.month"
+                                                        name="dob.month" class="form-control">
+                                                    <option ng-repeat="month in vm.dob.months" value="{{month}}">
+                                                        {{month}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4 pull-right">
+                                                <select ng-required="true" ng-model="vm.book.personalInfo.dob.year"
+                                                        name="dob.year" class="form-control">
+                                                    <option ng-repeat="year in vm.dob.years" value="{{year}}">{{year}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.region.$error.required && (book.$submitted || book.region.$touched)}">
+                                    <label for="region" class="col-sm-2 control-label pull-right">المنطقة*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <select id="region" ng-required="true" ng-model="vm.book.personalInfo.region"
+                                                ng-change="vm.filterCities(vm.book.personalInfo.region)" name="region"
+                                                class="form-control pull-right">
+                                            <option ng-repeat="region in vm.regions" value="{{region.region_id}}">
+                                                {{region.name.en}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div ng-show="book.$submitted || book.region.$touched">
+                                        <span ng-show="book.region.$error.required" class="alert alert-danger">المنطقة مطلوب’</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.city.$error.required && (book.$submitted || book.city.$touched)}">
+                                    <label for="region" class="col-sm-2 control-label pull-right">المدينة*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <select ng-required="true" ng-model="vm.book.personalInfo.city" name="city"
+                                                class="form-control pull-right">
+                                            <option ng-repeat="city in vm.filteredCities" value="{{city.city_id}}">
+                                                {{city.name.ar}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div ng-show="book.$submitted || book.city.$touched">
+                                        <span ng-show="book.city.$error.required" class="alert alert-danger">المدينة مطلوبة</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.phone.$error.required && (book.$submitted || book.phone.$touched)}">
+                                    <label for="phone" class="col-sm-2 control-label pull-right">الجوال*</label>
+
+                                    <div class="col-sm-6 pull-right left-direction">
+                                        <input ng-required="true" id="phone" ng-model="vm.book.personalInfo.phone"
+                                               type="text" class="form-control pull-right" name="phone"
+                                               ng-intl-tel-input/>
+                                    </div>
+                                    <div ng-show="book.$submitted || book.phone.$touched">
+                                        <span ng-show="book.phone.$error.required" class="alert alert-danger">الجوال مطلوب</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': (book.email.$error.required || book.email.$error.email) && (book.$submitted || book.email.$touched)}">
+                                    <label for="email" class="col-sm-2 control-label pull-right">البريد
+                                        الإلكتروني*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="email" type="email" ng-model="vm.book.personalInfo.email"
+                                               ng-required="true" class="form-control pull-right" name="email"
+                                               placeholder="مثال : example@domain.com">
+                                    </div>
+                                    <div ng-show="book.$submitted || book.email.$touched">
+                                        <span ng-show="book.email.$error.required" class="alert alert-danger">البريد الإلكتروني مطلوب</span>
+                                        <span ng-show="book.email.$error.email" class="alert alert-danger">يجب كتابة الإيميل بشكل صحيح</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': (book.reemail.$error.required || book.reemail.$error.reemail) && (book.$submitted || book.reemail.$touched)}">
+                                    <label for="emailConfirm" class="col-sm-2 control-label pull-right">تأكيد البريد
+                                        الإلكتروني*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="emailConfirm" type="email" ng-model="vm.book.personalInfo.reemail"
+                                               ng-required="true" class="form-control pull-right"
+                                               name="reemail" placeholder="مثال : example@domain.com">
+                                    </div>
+                                    <div ng-show="book.$submitted || book.reemail.$touched">
+                                        <span ng-show="book.reemail.$error.required" class="alert alert-danger">مطلوب تأكيد البريد الإلكتروني</span>
+                                        <span ng-show="book.reemail.$error.email" class="alert alert-danger">يجب كتابة الإيميل بشكل صحيح</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.school.$error.required && (book.$submitted || book.school.$touched)}">
+                                    <label for="school" class="col-sm-2 control-label pull-right">إسم المدرسه*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input type="text" id="school" ng-model="vm.book.personalInfo.school"
+                                               ng-required="true" class="form-control pull-right" name="school"
+                                               placeholder="إسم المدرسة">
+                                    </div>
+                                    <div ng-show="book.$submitted || book.school.$touched">
+                                        <span ng-show="book.school.$error.required" class="alert alert-danger">المدرسة المطلوبة</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="twitter" class="col-sm-2 control-label pull-right">حساب تويتر</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="twitter" type="text" ng-model="vm.book.personalInfo.twitter"
+                                               class="form-control pull-right" name="twitterAccount"
+                                               placeholder="أضف أسم حسابك في تويتر من غير علامة @ قبل الأسم">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 pull-right">إختر المدينة الأقرب إليك لإجراء المقابلة الشخصية*
+                                    </div>
+                                    <div class="col-md-6 pull-right">
+                                        <label class="radio-inline pull-right">
+                                            <input type="radio" ng-model="vm.book.personalInfo.nearedCity" value="0"
+                                                   name="nearCity">جدة
+                                        </label>
+                                        <label class="radio-inline pull-right">
+                                            <input type="radio" ng-model="vm.book.personalInfo.nearedCity" value="1"
+                                                   name="nearCity">الرياض
+                                        </label>
+                                        <label class="radio-inline pull-right">
+                                            <input type="radio" ng-model="vm.book.personalInfo.nearedCity" value="2"
+                                                   name="nearCity">الرياض
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 pull-right">كيف عرفت عن الجائزة؟*</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 pull-right">
+                                        <label class="checkbox-inline pull-right">
+                                            <input type="checkbox" ng-model="vm.book.personalInfo.knowContest[0]"> From
+                                            the
+                                            school
+                                        </label>
+                                        <label class="checkbox-inline pull-right">
+                                            <input type="checkbox" ng-model="vm.book.personalInfo.knowContest[1]"> Radio
+                                            interview
+                                        </label>
+                                        <label class="checkbox-inline pull-right">
+                                            <input type="checkbox" ng-model="vm.book.personalInfo.knowContest[2]"> TV
+                                            interview
+                                        </label>
+                                        <label class="checkbox-inline pull-right">
+                                            <input type="checkbox" ng-model="vm.book.personalInfo.knowContest[3]"> Add
+                                            in
+                                            the mall
+                                        </label>
+                                        <label class="checkbox-inline pull-right">
+                                            <input type="checkbox" ng-model="vm.book.personalInfo.knowContest[4]">
+                                            Twitter
+                                        </label>
+                                        <label class="checkbox-inline pull-right">
+                                            <input type="checkbox" ng-model="vm.book.personalInfo.knowContest[5]">
+                                            Facebook
+                                        </label>
+                                        <label class="checkbox-inline pull-right">
+                                            <input type="checkbox" ng-model="vm.book.personalInfo.knowContest[6]"> A
+                                            friend
+                                        </label>
+                                        <label class="checkbox-inline pull-right">
+                                            <input type="checkbox" ng-model="vm.book.personalInfo.knowContest[7]"> Other
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 pull-right">
+                                <h5>2 القسم الثاني: حول الكتاب</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 pull-right">
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.name.$error.required && (book.$submitted || book.name.$touched)}">
+                                    <label for="bookName" class="col-sm-2 control-label pull-right">إسم الكتاب*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <ui-select id="bookName"  ng-model="vm.book.book.name"
+                                                   theme="bootstrap"
+                                                   name="name"
+                                                   ng-required="true"
+                                                   ng-disabled="disabled"
+                                                   reset-search-input="false"
+                                                   style="width: 300px;">
+                                            <ui-select-match placeholder="أدخل إسم الكتاب">{{$select.selected}}</ui-select-match>
+                                            <ui-select-choices repeat="book in vm.books track by $index"
+                                                               refresh="vm.refreshBooks($select.search)"
+                                                               refresh-delay="0">
+                                                <div ng-bind-html="book | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div ng-show="book.$submitted || book.name.$touched">
+                                        <span ng-show="book.name.$error.required" class="alert alert-danger">إسم الكتاب مطلوب</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.author.$error.required && (book.$submitted || book.author.$touched)}">
+                                    <label for="bookAuthor" class="col-sm-2 control-label pull-right">مؤلف
+                                        الكتاب*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="bookAuthor" type="text" ng-required="true"
+                                               ng-model="vm.book.book.author" class="form-control pull-right"
+                                               name="author"
+                                               placeholder="مؤلف الكتاب">
+                                    </div>
+                                    <div ng-show="book.$submitted || book.author.$touched">
+                                        <span ng-show="book.author.$error.required" class="alert alert-danger">مؤلف الكتاب مطلوب</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.bookreview.$error.required && (book.$submitted || book.bookreview.$touched)}">
+                                    <label for="bookReview" class="col-sm-2 control-label  pull-right">مراجعتك
+                                        للكتاب*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                    <textarea id="bookReview" cols="50" rows="8" ng-required="true" class="pull-right"
+                                              ng-model="vm.book.book.review" name="bookreview"
+                                              placeholder="الرجاء كتابة مراجعتك للكتاب تتحدث فيها عن أعم أفكار التي ناقشها"/>
+                                    </div>
+                                    <div ng-show="book.$submitted || book.bookreview.$touched">
+                                        <span ng-show="book.bookreview.$error.required" class="alert alert-danger">مراجعتك للكتاب مطلوبة</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.reason.$error.required && (book.$submitted || book.reason.$touched)}">
+                                    <label for="bookReason" class="col-sm-2 control-label pull-right">لماذا هذا
+                                        الكتاب*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                    <textarea id="bookReason" cols="50" rows="8" ng-required="true" class="pull-right"
+                                              ng-model="vm.book.book.reason" name="reason"
+                                              placeholder="إشرح سبب إختيارك لهذا الكتاب لماذا أثر فيك ولماذا وجدته ملهما؟"/>
+                                    </div>
+                                    <div ng-show="book.$submitted || book.reason.$touched">
+                                        <span ng-show="book.reason.$error.required" class="alert alert-danger">شرح سبب إختيار الكتاب مطلوبة</span>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-class="{'has-error': book.twit.$error.required && (book.$submitted || book.twit.$touched)}">
+                                    <label for="bookTwit" class="col-sm-2 control-label pull-right">تغريدة*</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                    <textarea id="bookTwit" cols="50" rows="8" ng-maxlength="140" ng-required="true"
+                                              class="pull-right"
+                                              ng-model="vm.book.book.twit" name="twit"
+                                              placeholder="الرجاء كتابة مراجعتك للكتاب تتحدث فيها عن أعم أفكار التي ناقشها"/>
+                                    </div>
+                                    <div ng-show="book.$submitted || book.twit.$touched">
+                                        <span ng-show="book.twit.$error.required" class="alert alert-danger">برجاء كتابة مراجعتك للكتاب</span>
+                                        <span ng-show="book.twit.$error.maxlength" class="alert alert-danger"> برجاء كتابة مراجعتك للكتاب في 140 حرف</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 pull-right">
+                                <h5>3 القسم الثالث: عن القراءة</h5>
+                                <h5>تزويدنا بالمعلومات التالية يعزز من فرص ترشحك للمرحلة القادمة</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="story" class="col-sm-2 control-label pull-right">قصتك مع القرأءة، اماذا
+                                        تمثل
+                                        لك</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                    <textarea id="story" name="reading.story" cols="50" rows="8"
+                                              ng-model="vm.book.reading.story" class="pull-right"
+                                              placeholder="شاركنا قصتك هنا، متضمنة نشاطاتك الإجتماعية المتعلقة بالقراءة"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="favorites" class="col-sm-2 control-label pull-right">الكتب المفضلة التي
+                                        قرأتها</label>
+
+                                    <div class="col-md-6  pull-right">
+                                        <textarea id="favorites" name="reading.favorites" cols="50" rows="8"
+                                                  ng-model="vm.book.reading.favorites" class="pull-right"
+                                                  placeholder="3 عناوين"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="blog" class="col-sm-2 control-label pull-right">هل لديك مدونة شخصية؟
+                                        شاركنا
+                                        بالرابط</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="blog" type="text" name="reading.blog" ng-model="vm.book.reading.blog"
+                                               class="form-control  pull-right"
+                                               placeholder="http://example.com"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="readsSite" class="col-sm-2 control-label pull-right">هل شاركت بمواقع
+                                        مراجعات الكتب؟
+                                        شاركنا بالرابط</label>
+
+                                    <div class="col-sm-6  pull-right">
+                                        <input id="readsSite" type="text" name="reading.readsSite"
+                                               class="form-control pull-right"
+                                               ng-model="vm.book.reading.readsSite"
+                                               placeholder="goodreads, abjjad..etc"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="readsReview" class="col-sm-2 control-label pull-right">هل لديك مراجعات
+                                        منشورة لكتب؟
+                                        شاركنا بالرابط</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="readsReview" type="text" name="readsReview"
+                                               class="form-control pull-right"
+                                               ng-model="vm.book.reading.readsReview" placeholder="http://example.com"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 pull-right">
+                                <h5>4 القسم الرابع: رفع الملفات(خياري)</h5>
+
+                                <h3>الملفات المرفقة تساعدنا أكثر على تجربتك مع الكتاب.</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="youTubeVideo" class="col-sm-2 control-label pull-right">فيديو
+                                        يوتيوب</label>
+
+                                    <div class="col-sm-6 pull-right">
+                                        <input id="youTubeVideo" type="text" name="youtube"
+                                               class="form-control pull-right"
+                                               ng-model="vm.book.files.youTubeVideo" placeholder="http://example.com"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3  pull-right">عرض مساعد</div>
+                                    <div class="col-md-3  pull-right">
+                                        <button class="btn btn-lg  pull-right">رفع</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label class="checkbox-inline pull-right">
+                            <input type="checkbox" class="pull-right" ng-required="true" ng-model="vm.book.accepted">
+                            أقر أنا المتقدم للجائزة
+                            باطلاعي وموافقتي على كافة
+                            الشروط والمعايير الخاصة بالجائزة وأتعهد بصحة البيانات الشخصية المدخلة وموافقتي الشخصية على
+                            استكمال مراحل الجائزة شخصيا ومناقشة مشروعي في حال ترشيحي، وفي حالة عدم تواقثي أو استيفائي
+                            للشروط المطلوبة أو ثبوت مخالفتي ألى من التعليمات المتفق عليها فسوف يتم حذف مشاركتي من
+                            الترشيح وسيتم استبعادي من الجائزة.
+                        </label>
+
+                        <div ng-show="book.$submitted || book.accepted.$touched">
+                            <span ng-show="book.accepted.$error.required" class="alert alert-danger">شرح سبب إختيار الكتاب مطلوبة</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 pull-right">
+                        <button type="submit" ng-class="{'disabled':!book.$valid}" class="btn btn-lg pull-right">شارك
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

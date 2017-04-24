@@ -1,0 +1,585 @@
+<div class="mainHeaderDiv container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-xs-10" style="text-align: left">
+            <button type="button" class="contactUs" ng-click="contactUs()">
+                <div class="cUs"></div>
+            </button>
+            <div class="lgInfo" ng-if="!logginUserName">
+                <a href="" class="btnHeader" data-toggle="modal" data-target="#NewUser">مستخدم جديد</a>
+
+                <div class="splitter"></div>
+                <a href="" class="btnHeader" ng-click="openLogin()">تسجيل الدخول</a>
+            </div>
+            <div class="lgInfo" ng-if="logginUserName">
+                <a ng-click="openProfile()" class="btnHeader" data-toggle="modal">{{logginUserName}}</a>
+
+                <div class="splitter"></div>
+                <a href="" class="btnHeader" ng-click="logOut()">تسجيل الخروج</a>
+            </div>
+
+        </div>
+        <div class="col-md-6 col-xs-0"></div>
+        <div class="col-md-2 col-xs-2">
+            <div class="mainLogoRight">
+                <a class="homeLink" ui-sref="main">
+                    <img src="../assets/images/logos/Ithra_Logo.png" class="logoImageRight">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-body bodyContentModal" style="margin-bottom: -50px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>شاركنا كتابك</h1>
+                <h5>تستطيع المشاركة باللغتين العربية والانجليزيةوسيكون العرض النهائي حال ترشحكم بالعربية فقط</h5>
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <form novalidate name="book" class="form-horizontal" style="direction: rtl" ng-submit="vm.submitBookForm()">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 pull-right">
+                            <h4>1 القسم الاول: المعلومات الشخصيه</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--<div class="col-md-4">
+                            <ng-map id="map" center="23.8859,45.0792" zoom="6">
+                                <marker position="{{vm.selectedSchool.latlng}}" title="Hello World!"
+                                        animation="Animation.BOUNCE" animation="DROP" draggable="true"></marker>
+                            </ng-map>
+                        </div>-->
+                        <div class="col-md-12">
+                            <div class="form-group"
+                                 ng-class="{'has-error': book.educationLevel.$error.required && (book.$submitted || book.educationLevel.$touched)}">
+                                <label for="educationLevel"
+                                       class="col-md-2 col-sm-2 col-xs-12 control-label pull-right">المرحلة
+                                    *</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <ui-select id="educationLevel" ng-model="vm.book.educationLevel"
+                                               theme="bootstrap"
+                                               name="educationLevel"
+                                               ng-required="true"
+                                               search-enabled="false"
+                                               ng-disabled="vm.disabled"
+                                               reset-search-input="false"
+                                               style="width: 100%">
+                                        <ui-select-match placeholder="إختار المرحلة">
+                                            {{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                                repeat="edulevel.value as edulevel in vm.educationLevels track by $index">
+                                            {{edulevel.name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div ng-show="book.$submitted || book.educationLevel.$touched">
+                                    <span ng-show="book.educationLevel.$error.required" class="alert alert-danger">المرحلة التعليمية مطلوبة</span>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error': book.university.$error.required && (book.$submitted || book.university.$touched)}">
+                                <label for="university" class="col-md-2 col-sm-2 col-xs-12 control-label pull-right">إسم
+                                    الجامعة /
+                                    المدرسه *</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <ui-select id="university" ng-model="vm.book.university"
+                                               theme="bootstrap"
+                                               name="university"
+                                               ng-required="true"
+                                               on-select="vm.onSelectedSchool($item)"
+                                               ng-disabled="vm.disabled"
+                                               reset-search-input="false"
+                                               style="width: 100%">
+                                        <ui-select-match placeholder="أدخل إسم الجامعه / المدرسه">
+                                            {{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                                repeat="univer.id as univer in vm.universities | filter: $select.search"
+                                                refresh="vm.refreshSchools($select.search)"
+                                                refresh-delay="0">
+                                            {{univer.name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div ng-show="book.$submitted || book.university.$touched">
+                                    <span ng-show="book.university.$error.required" class="alert alert-danger">الجامعة مطلوبة</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2  col-sm-2 col-xs-12 pull-right">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="">كود تفعيل المدرسه</label>
+                                            <label class="smallFont">(اطلب كود التفعيل من معلمك)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <input type="text" class="form-control" ng-model="vm.book.verificationCode">
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-12 pull-right">
+                                    <a href="" ng-if="vm.disabled"
+                                       ng-click="vm.submitVerificationCode()"
+                                       class="margin-top-10 hoverA pull-right">تعديل كود التفعيل
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <label class="col-md-2 col-sm-2 col-xs-12 pull-right">كيف عرفت عن الجائزة؟*</label>
+
+                                <div class="col-md-9 col-sm-9 col-xs-12 pull-right" style="padding-right: 32px">
+                                    <label class="checkbox-inline pull-right">
+                                        <input type="checkbox" ng-model="vm.book.knowContest[0]"
+                                               ng-disabled="vm.disabled">
+                                        المدرسة
+                                    </label>
+                                    <label class="checkbox-inline pull-right">
+                                        <input type="checkbox" ng-model="vm.book.knowContest[1]"
+                                               ng-disabled="vm.disabled">
+                                        لقاء على الراديو
+                                    </label>
+                                    <label class="checkbox-inline pull-right">
+                                        <input type="checkbox" ng-model="vm.book.knowContest[2]"
+                                               ng-disabled="vm.disabled">
+                                        لقاء على التلفاز
+                                    </label>
+                                    <label class="checkbox-inline pull-right">
+                                        <input type="checkbox" ng-model="vm.book.knowContest[3]"
+                                               ng-disabled="vm.disabled">
+                                        من مركز تجاري
+                                    </label>
+                                    <label class="checkbox-inline pull-right">
+                                        <input type="checkbox" ng-model="vm.book.knowContest[4]"
+                                               ng-disabled="vm.disabled">
+                                        تويتر
+                                    </label>
+                                    <label class="checkbox-inline pull-right">
+                                        <input type="checkbox" ng-model="vm.book.knowContest[5]"
+                                               ng-disabled="vm.disabled">
+                                        فايسبوك
+                                    </label>
+                                    <label class="checkbox-inline pull-right">
+                                        <input type="checkbox" ng-model="vm.book.knowContest[6]"
+                                               ng-disabled="vm.disabled">
+                                        صديق
+                                    </label>
+                                    <label class="checkbox-inline pull-right">
+                                        <input type="checkbox" ng-model="vm.book.knowContest[7]"
+                                               ng-disabled="vm.disabled">
+                                        آخرى
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                            <h4>2 القسم الثاني: حول الكتاب</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                            <div class="form-group"
+                                 ng-class="{'has-error': book.name.$error.required && (book.$submitted || book.name.$touched) && book.name.$invalid}">
+                                <div class="col-md-2 col-sm-2 col-xs-12 pull-right">
+                                    <label for="bookName" class="control-label pull-right">إسم
+                                        الكتاب*</label>
+                                </div>
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <ui-select id="bookName" ng-model="vm.book.name"
+                                               theme="bootstrap"
+                                               name="name"
+                                               ng-required="true"
+                                               ng-disabled="vm.disabled"
+                                               reset-search-input="false"
+                                               on-select="vm.onSelected($item)"
+                                               style="width: 100%">
+                                        <ui-select-match placeholder="أدخل إسم الكتاب">
+                                            {{$select.selected.title}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="book in vm.books track by $index"
+                                                           refresh="vm.refreshBooks($select.search)"
+                                                           refresh-delay="0">
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div>{{book.title}}</div>
+                                                        <div ng-if="book.author.name">{{book.author.name}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3" ng-if="book.image_url">
+                                                        <img ng-src="{{book.image_url}}"
+                                                             style="width: 50px;height: 50px">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div ng-show="book.$submitted || book.name.$touched">
+                                                    <span ng-show="book.name.$error.required"
+                                                          class="alert alert-danger">إسم الكتاب مطلوب</span>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error': book.author.$error.required && (book.$submitted || book.author.$touched)}">
+                                <div class="col-md-2 col-sm-2 col-xs-12 pull-right">
+                                    <label for="bookAuthor" class="control-label pull-right">مؤلف
+                                        الكتاب*</label>
+                                </div>
+                                <div class="col-md-7 col-sm-7  col-xs-12 pull-right">
+                                    <input id="bookAuthor" type="text" ng-required="true"
+                                           ng-disabled="vm.disabled"
+                                           ng-model="vm.book.author" class="form-control pull-right"
+                                           name="author" ng-value="vm.book.book.name.title.author.name"
+                                           placeholder="مؤلف الكتاب">
+                                </div>
+                                <div ng-show="book.$submitted || book.author.$touched">
+                                                    <span ng-show="book.author.$error.required"
+                                                          class="alert alert-danger">مؤلف الكتاب مطلوب</span>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-right: 15px">
+                                <!--<div class="col-md-3">
+                                    <img ng-if="vm.book.name.image_url" ng-src="{{vm.book.name.image_url}}"
+                                         style="width: 100px;height: 100px">
+
+                                    <img ng-if="!vm.book.name.image_url"
+                                         ng-src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png"
+                                         style="width: 80px;height: 80px">
+                                </div>-->
+                                <div class="col-md-9">
+                                    <div class="row">
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error': book.bookreview.$error.required && (book.$submitted || book.bookreview.$touched) && book.bookreview.$invalid}">
+                                <label for="bookReview" class="col-md-2 col-sm-2 col-xs-12 control-label pull-right">مراجعتك
+                                    للكتاب*</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <textarea id="bookReview" cols="50" rows="8" ng-required="true" class="pull-right"
+                                              ng-disabled="vm.disabled" style="width: 100%"
+                                              ng-model="vm.book.review" name="bookreview"
+                                              placeholder="الرجاء كتابة مراجعتك للكتاب تتحدث فيها عن أعم أفكار التي ناقشها"/>
+                                </div>
+                                <div ng-show="book.$submitted || book.bookreview.$touched">
+                                    <span ng-show="book.bookreview.$error.required" class="alert alert-danger">مراجعتك للكتاب مطلوبة</span>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error': book.reason.$error.required && (book.$submitted || book.reason.$touched)}">
+                                <label for="bookReason" class="col-sm-2 col-md-2 col-xs-12 control-label pull-right">لماذا
+                                    هذا
+                                    الكتاب*</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <textarea id="bookReason" cols="50" rows="8" ng-required="true" class="pull-right"
+                                              ng-disabled="vm.disabled" style="width: 100%"
+                                              ng-model="vm.book.reason" name="reason"
+                                              placeholder="إشرح سبب إختيارك لهذا الكتاب لماذا أثر فيك ولماذا وجدته ملهما؟"/>
+                                </div>
+                                <div ng-show="book.$submitted || book.reason.$touched">
+                                    <span ng-show="book.reason.$error.required" class="alert alert-danger">شرح سبب إختيار الكتاب مطلوبة</span>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error': book.twit.$error.required && (book.$submitted || book.twit.$touched)}">
+                                <label for="bookTwit"
+                                       class="col-sm-2 col-md-2 col-xs-12 control-label pull-right">تغريدة*</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <textarea id="bookTwit" cols="50" rows="8" ng-maxlength="140" ng-required="true"
+                                              ng-disabled="vm.disabled"
+                                              class="pull-right" style="width: 100%"
+                                              ng-model="vm.book.twit" name="twit"
+                                              placeholder="الرجاء كتابة مراجعتك للكتاب تتحدث فيها عن أعم أفكار التي ناقشها"/>
+
+
+                                </div>
+                                <div ng-show="book.$submitted || book.twit.$touched">
+                                                    <span ng-show="book.twit.$error.required"
+                                                          class="alert alert-danger">برجاء كتابة مراجعتك للكتاب</span>
+                                                    <span ng-show="book.twit.$error.maxlength"
+                                                          class="alert alert-danger"> برجاء كتابة مراجعتك للكتاب في 140 حرف</span>
+                                </div>
+                                <div class="col-sm-3 col-md-3 col-xs-11 col-md-offset-1 col-xs-offset-1">
+                                    <div style="direction: rtl">140/{{vm.book.twit.length==null?0:vm.book.twit.length}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                            <h4>3 القسم الثالث: عن القراءة</h4>
+                            <label class="smallFont">تزويدنا بالمعلومات التالية يعزز من فرص ترشحك للمرحلة
+                                القادمة</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="story" class="col-sm-2 col-md-2 col-xs-12 control-label pull-right">قصتك مع
+                                    القرأءة،
+                                    اماذا
+                                    تمثل
+                                    لك</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <textarea id="story" name="reading.story" cols="50" rows="8"
+                                              ng-disabled="vm.disabled" style="width: 100%"
+                                              ng-model="vm.book.story" class="pull-right"
+                                              placeholder="شاركنا قصتك هنا، متضمنة نشاطاتك الإجتماعية المتعلقة بالقراءة"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="favorites" class="col-sm-2 col-md-2 col-xs-12 control-label pull-right">الكتب
+                                    المفضلة
+                                    التي
+                                    قرأتها</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                        <textarea id="favorites" name="reading.favorites" cols="50" rows="8"
+                                                  ng-disabled="vm.disabled" style="width: 100%"
+                                                  ng-model="vm.book.favorites" class="pull-right"
+                                                  placeholder="3 عناوين"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="blog" class="col-sm-2 col-sm-2 col-xs-12 control-label pull-right">هل لديك
+                                    مدونة شخصية؟
+                                    شاركنا
+                                    بالرابط</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <input id="blog" type="text" name="reading.blog"
+                                           ng-model="vm.book.blog"
+                                           ng-disabled="vm.disabled" style="width: 100%"
+                                           class="form-control pull-right"
+                                           placeholder="http://example.com"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="readsSite" class="col-sm-2 col-md-2 col-xs-12 control-label pull-right">هل
+                                    شاركت بمواقع
+                                    مراجعات الكتب؟
+                                    شاركنا بالرابط</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12  pull-right">
+                                    <input id="readsSite" type="text" name="reading.readsSite"
+                                           ng-disabled="vm.disabled"
+                                           class="form-control pull-right"
+                                           ng-model="vm.book.readsSite"
+                                           placeholder="goodreads, abjjad..etc"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="readsReview" class="col-sm-2 col-md-2 col-xs-12 control-label pull-right">هل
+                                    لديك
+                                    مراجعات
+                                    منشورة لكتب؟
+                                    شاركنا بالرابط</label>
+
+                                <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                                    <input id="readsReview" type="text" name="readsReview"
+                                           ng-disabled="vm.disabled"
+                                           class="form-control pull-right"
+                                           ng-model="vm.book.readsReview"
+                                           placeholder="http://example.com"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="youTubeVideo" class="col-sm-2 col-md-2 col-xs-12 control-label pull-right">فيديو
+                            يوتيوب</label>
+
+                        <div class="col-md-7 col-sm-7 col-xs-12 pull-right">
+                            <input id="youTubeVideo" type="text" name="youtube"
+                                   ng-disabled="vm.disabled"
+                                   class="form-control pull-right"
+                                   ng-model="vm.book.youTubeVideo"
+                                   placeholder="http://example.com"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                            <h4>4 القسم الرابع: رفع الملفات(خياري)</h4>
+
+                            <label class="smallFont">الملفات المرفقة تساعدنا أكثر على تجربتك مع الكتاب.</label>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-right-1 col-sm-offset-right-1 col-xs-offset-right-1 pull-right">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a ngf-pattern="'.pdf'" accept=".pdf"
+                                           ngf-select="vm.upload($files)" multiple
+                                           ng-disabled="vm.disabled || vm.disabledUpload"
+                                           class="hoverA  pull-right">
+                                            <img src="../../assets/images/general/upload.png"
+                                                 style="height: 50px"><span>
+                                            اختيار الملفات
+                                        </span></a>
+                                    </div>
+                                </div>
+                                <div class="row" ng-if="vm.book.files && vm.book.files.length > 0">
+                                    <div class="col-sm-12 col-md-12 col-xs-12">
+                                        <div class="row">
+                                            <label class="col-sm-2 col-md-2 col-xs-12 control-label pull-right">الملفات</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-10">
+                                                <ul>
+                                                    <li ng-repeat="f in vm.book.files">{{f.name}}
+                                                        {{f.$errorParam}}
+                                                <span class="progress" ng-show="f.progress >= 0">
+                                                    <div style="width:{{f.progress}}%"
+                                                         ng-bind="f.progress + '%'"></div>
+                                                </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-if="vm.book.filesName && vm.book.filesName.length > 0">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <label class="col-sm-2 control-label pull-right">الملفات
+                                                المرفوعة</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-10">
+                                                <ul>
+                                                    <li ng-repeat="f in vm.book.filesName track by $index">
+                                                        {{f.name}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 pull-right">إختر المدينة الأقرب إليك
+                    لإجراء المقابلة
+                    الشخصية*
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 col-xs-offset-right-2 pull-right">
+                    <label class="radio-inline pull-right">
+                        <input type="radio" ng-model="vm.book.nearedCity" value="1"
+                               ng-disabled="vm.disabled"
+                               name="nearCity">دمام
+                    </label>
+                    <label class="radio-inline pull-right">
+                        <input type="radio" ng-model="vm.book.nearedCity" value="2"
+                               ng-disabled="vm.disabled"
+                               name="nearCity">الرياض
+                    </label>
+                    <label class="radio-inline pull-right">
+                        <input type="radio" ng-model="vm.book.nearedCity" value="0"
+                               ng-disabled="vm.disabled"
+                               name="nearCity">جدة
+                    </label>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group"
+                     ng-class="{'has-error': book.accepted.$error.required && (book.$submitted || book.accepted.$touched) && book.accepted.$invalid}">
+                    <label class="checkbox-inline pull-right col-md-10 col-sm-10"
+                           style="color: teal;margin-right: -15px;padding: 15px;">
+                        <input type="checkbox" class="pull-right" ng-required="true" name="accepted"
+                               ng-disabled="vm.disabled"
+                               ng-model="vm.book.accepted">
+                        أقر أنا المتقدم للجائزة
+                        باطلاعي وموافقتي على كافة
+                        الشروط والمعايير الخاصة بالجائزة وأتعهد بصحة البيانات الشخصية المدخلة وموافقتي
+                        الشخصية
+                        على
+                        استكمال مراحل الجائزة شخصيا ومناقشة مشروعي في حال ترشيحي، وفي حالة عدم تواقثي أو
+                        استيفائي
+                        للشروط المطلوبة أو ثبوت مخالفتي ألى من التعليمات المتفق عليها فسوف يتم حذف
+                        مشاركتي من
+                        الترشيح وسيتم استبعادي من الجائزة.
+                    </label>
+
+                    <div ng-show="book.$submitted || book.accepted.$touched" class="col-md-4">
+                        <span ng-show="book.accepted.$error.required" class="alert alert-danger">يجب قبول الشروط و المعايير</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-3 pull-right">
+                    <button type="submit" ng-disabled="!book.$valid || (vm.disabled)"
+                            class="ButtonStyleSectionOne pull-right" style="width: 100%">حفظ
+                    </button>
+                </div>
+                <div class="col-md-1 col-xs-9 pull-right">
+                    <button type="button" ng-disabled="vm.book.status !== 'save'"
+                            ng-click="vm.submitParticipat()"
+                            class="ButtonStyleSectionOne pull-right" style="width: 100%">تسليم المشاركة تسليم نهائي
+                    </button>
+                </div>
+                <label class="checkbox-inline col-md-7 col-sm-8 col-xs-8">
+                    <input type="checkbox" class="pull-right" ng-disabled="vm.book.status !== 'save'"
+                           ng-model="vm.book.postTwit">تسليهم نهائي وشارك بتغريدة</label>
+            </div>
+        </form>
+    </div>
+</div>

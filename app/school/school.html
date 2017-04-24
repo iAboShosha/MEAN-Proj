@@ -1,0 +1,215 @@
+<div class="mainHeaderDiv container-fluid">
+    <div class="row">
+        <div class="col-md-4" style="text-align: left">
+            <button type="button" class="contactUs" ng-click="contactUs()">
+                <div class="cUs"></div>
+            </button>
+            <div class="lgInfo" ng-if="!logginUserName">
+                <a href="" class="btnHeader" data-toggle="modal" data-target="#NewUser">مستخدم جديد</a>
+
+                <div class="splitter"></div>
+                <a href="" class="btnHeader" ng-click="openLogin()">تسجيل الدخول</a>
+            </div>
+            <div class="lgInfo" ng-if="logginUserName">
+                <a ng-click="openProfile()" class="btnHeader" data-toggle="modal">{{logginUserName}}</a>
+
+                <div class="splitter"></div>
+                <a href="" class="btnHeader" ng-click="logOut()">تسجيل الخروج</a>
+            </div>
+
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-2">
+            <div class="mainLogoRight">
+                <a class="homeLink" ui-sref="main">
+                    <img src="../assets/images/logos/Ithra_Logo.png" class="logoImageRight">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-body bodyContentModal" style="margin-bottom: -50px">
+    <h2 class="titleLogin">بيانات المدرسه</h2>
+    <br>
+
+    <form class="container" name="account_form" id="account_form" ng-submit="vmSchool.schoolRegister()"
+          novalidate="novalidate" style="direction: rtl">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label style="display: block">اسم المدرسه *</label>
+
+                    <div class="clearfix">
+                        <input placeholder="اسم المدرسه" type="text"
+                               ng-model="vmSchool.school.name"
+                               class="form-control inputStyleCu"
+                               id="name" name="name" ng-required="true">
+                    </div>
+
+                </div>
+                <div class="alert alert-danger"
+                     ng-show="(account_form.name.$dirty  || vmSchool.submitted) && account_form.name.$error.required">
+                    الاسم مطلوب
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust" style="direction: ltr">
+                    <label style="direction: rtl;display: block">رقم الجوال *</label>
+                    <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                           ng-model="vmSchool.school.mobile" ng-intl-tel-input
+                           class="form-control inputStyleCu  pull-right" id="mobileno" name="mobileno"
+                           ng-required="true">
+
+                </div>
+                <div class="alert alert-danger"
+                     ng-show="(account_form.mobileno.$dirty  || vmAuth.submitted) && account_form.mobileno.$invalid">
+                    يجب ادخال رقم جوال صحيح
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label style="display: block">اسم المدير </label>
+
+                    <div class="clearfix">
+                        <input placeholder="اسم المدير" type="text"
+                               ng-model="vmSchool.school.managerName"
+                               class="form-control inputStyleCu"
+                               id="managerName" name="managerName">
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label style="display: block">اسم جهة الاتصال *</label>
+
+                    <div class="clearfix">
+                        <input placeholder="اسم جهة الاتصال" type="text"
+                               ng-model="vmSchool.school.contactName"
+                               class="form-control inputStyleCu"
+                               id="contactName" name="contactName" ng-required="true">
+                    </div>
+
+                </div>
+                <div class="alert alert-danger"
+                     ng-show="(account_form.contactName.$dirty  || vmSchool.submitted) && account_form.contactName.$error.required">
+                    الاسم مطلوب
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label>المنطقه *</label>
+                    <select id="region" ng-model="vmSchool.school.region"
+                            ng-change="vmSchool.filterCities(vmSchool.school.region)" name="region"
+                            class="form-control inputStyleCu pull-right" ng-required="true">
+                        <option ng-repeat="region in vmSchool.regions" value="{{region.region_id}}">
+                            {{region.name.ar}}
+                        </option>
+                    </select>
+                </div>
+                <div class="alert alert-danger"
+                     ng-show="(account_form.region.$dirty  || vmSchool.submitted) && account_form.region.$error.required">
+                    المدينة مطلوبة
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label>المدينه *</label>
+                    <select ng-required="true" ng-model="vmSchool.school.city" name="city"
+                            class="form-control inputStyleCu pull-right">
+                        <option ng-repeat="city in vmSchool.filteredCities" value="{{city.city_id}}">
+                            {{city.name.ar}}
+                        </option>
+                    </select>
+
+                </div>
+                <div class="alert alert-danger"
+                     ng-show="(account_form.city.$dirty  || vmSchool.submitted) && account_form.city.$error.required">
+                    المنطقه مطلوبه
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label style="display: block">البريد الالكتروني</label>
+
+                    <div class="clearfix">
+                        <input type="email" name="email" id="email"
+                               ng-model="vmSchool.school.email"
+                               class="form-control inputStyleCu"
+                                >
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label style="display: block">نوع المدرسة</label>
+
+                    <div class="clearfix">
+                        <select ng-model="vmSchool.school.type" class="form-control selectStyle" id="schoolType"
+                                name="schoolType"
+                                ng-options="r.value as r.Name for r in vmSchool.schoolTypes" ng-required="true">
+                        </select>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="form-group inputCust">
+                    <label style="display: block">عدد الطلاب</label>
+
+                    <div class="clearfix">
+                        <input type="number" name="studentsCount" id="studentsCount"
+                               ng-model="vmSchool.school.studentsCount"
+                               class="form-control inputStyleCu"
+                               min="10" max="1000" step="1" value="20">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                <div class="alert alert-danger" id="signup-error" ng-if="vmSchool.error">
+                    <strong>{{vmSchool.error}}</strong>
+                </div>
+                <div class="alert alert-success" id="signup-success" style="display:none;">
+                    <strong></strong>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                <label style="display: block">الموقع الجغرافي</label>
+
+                <div class="col-md-10 col-md-offset-1">
+                    <ng-map id="map" center="23.8859,45.0792" zoom="6" on-click="vmSchool.getpos($event)">
+                        <marker position="{{vmSchool.school.latlng}}" title="Hello World!"
+                                on-dragend="vmSchool.getpos($event)"
+                                animation="Animation.BOUNCE" animation="DROP" draggable="true"></marker>
+                    </ng-map>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <div class="col-md-12">
+            <button class="buttonFormSend btn btn-default" type="submit"> تسجيل المدرسه</button>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>
